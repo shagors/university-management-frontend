@@ -1,5 +1,5 @@
 const StudentDashboard = () => {
-  return <div>FacultyDashboard</div>;
+  return <div>StudentDashboard</div>;
 };
 
 export default StudentDashboard;
