@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Store, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
 import { baseApi } from "./api/baseApi";
 
@@ -21,7 +21,7 @@ const persistConfig = {
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
-export const store = configureStore({
+export const store: Store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
