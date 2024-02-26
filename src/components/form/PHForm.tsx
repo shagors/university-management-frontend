@@ -1,3 +1,4 @@
+import { Form } from "antd";
 import { ReactNode } from "react";
 import {
   FieldValues,
@@ -8,6 +9,7 @@ import {
 
 type TFormConfig = {
   defaultValues?: Record<string, any>;
+  resolver?: any;
 };
 
 type TFormProps = {
@@ -15,27 +17,37 @@ type TFormProps = {
   children: ReactNode;
 } & TFormConfig;
 
-const PHForm = ({ onSubmit, children, defaultValues }: TFormProps) => {
+const PHForm = ({
+  onSubmit,
+  children,
+  defaultValues,
+  resolver,
+}: TFormProps) => {
   const formConfig: TFormConfig = {};
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
   }
+
+  if (resolver) {
+    formConfig["resolver"] = resolver;
+  }
+
   const methods = useForm(formConfig);
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        style={{
-          boxShadow: "7px 0px 20px 0px rgba(0,0,0,0.2)",
-          padding: "15px",
-          width: "250px",
-          height: "220px",
-          borderRadius: "8px",
-        }}
+      <Form
+        layout="vertical"
+        onFinish={methods.handleSubmit(onSubmit)}
+        // style={{
+        //   width: "500px",
+        //   padding: "20px",
+        //   borderRadius: "5px",
+        //   boxShadow: "inset 0 0 10px #2E9AFE",
+        // }}
       >
         {children}
-      </form>
+      </Form>
     </FormProvider>
   );
 };
