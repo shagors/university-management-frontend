@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
+
 const StudentDetails = () => {
-  return <div>StudentDetails</div>;
+  const { studentId } = useParams();
+  return <div>StudentDetails {studentId}</div>;
 };
 
 export default StudentDetails;
