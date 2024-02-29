@@ -3,7 +3,7 @@ import ProtectedLayout from "./components/layout/ProtectedLayout";
 
 function App() {
   return (
-    <ProtectedLayout>
+    <ProtectedLayout role={undefined}>
       <MainLayout />
     </ProtectedLayout>
   );
